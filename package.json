@@ -1,0 +1,28 @@
+{
+  "name": "superbiden",
+  "version": "1.0.0",
+  "description": "Funny Biden Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "del bidenbotcore.zip",
+    "build": "7z a bidenbotcore.zip brains.json handlers *.js",
+    "deploy": "aws lambda update-function-code --function-name SuperBidenBot --zip-file fileb://bidenbotcore.zip --publish",
+    "chaindeploy": "npm run clean && npm run build && npm run deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@personal:Karvaporsas/superbiden.git"
+  },
+  "keywords": [
+    "Bot"
+  ],
+  "author": "touko.hjelt@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "form-data": "^3.0.0",
+    "fs": "0.0.1-security",
+    "request-promise": "^4.2.6"
+  }
+}
