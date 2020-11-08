@@ -13,7 +13,7 @@ const _standardResponse = {
 };
 
 function _scanForTriggers(text) {
-    const lcString = text.toLowerCase();
+    const lcString = (text || '').toLowerCase();
 
     for (const trigger of brainMatter.Triggers) {
         if (lcString.indexOf(trigger) > -1) {
