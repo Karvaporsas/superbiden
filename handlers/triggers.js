@@ -6,6 +6,7 @@ const brainMatter = require('../brains.json');
 const helper = require('../helper');
 const messageSender = require('../telegramMessageSender');
 const TEST_MODE = process.env.TEST_MODE === 'ON';
+const TRIGGER_PROPABILITY = parseInt( (process.env.TRIGGER_PROPABILITY || '1'), 10);
 const _standardResponse = {
     status: 1,
     type: 'text',
@@ -66,8 +67,8 @@ module.exports = {
             var messageText = helper.getEventMessageText(event);
 
             var triggerScanResult = _scanForTriggers(messageText);
-
-            if (triggerScanResult.triggersActivated) {
+            var heRemembered = Math.floor(Math.random() * TRIGGER_PROPABILITY) === TRIGGER_PROPABILITY -1;
+            if (triggerScanResult.triggersActivated && heRemembered) {
                 _sendFrontalCortexResponse(chatId, resolve, reject);
             } else {
                 resolve(_standardResponse);
